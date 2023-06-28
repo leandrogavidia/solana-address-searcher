@@ -40,7 +40,7 @@ export const updateAddressData = async (address: string) => {
         return {
           address,
           balance: addressBalance,
-          isExecutable: isAddressExecutable,
+          isExecutable: JSON.stringify(isAddressExecutable),
         };
       }
     } catch (error) {
