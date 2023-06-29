@@ -1,10 +1,11 @@
-import { SearchSolanaAddress } from "./components/SearchSolanaAddress";
-import { ShortcutToSearch } from "./components/ShortcutToSearch";
+import { SearchSolanaAddress } from "./components/search-solana-address";
+import { ShortcutToSearch } from "./components/shortcut-to-search";
 import "../styles/global.css";
 
 function App() {
-  // Add Styles
+  // Change mouse shadow
   // Add loading styles
+  // Add Solana Font
   // Add docker file and docker compose
   // Add LICENSE
   // Add readme

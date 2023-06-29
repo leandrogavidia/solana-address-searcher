@@ -4,8 +4,17 @@
   margin: 0;
 }
 
+*::selection {
+  color: theme("colors.fourth");
+  background-color: theme("colors.solana_second");
+}
+
 body {
-  background-image: linear-gradient(90deg, #9945ff, #14f195);
+  background-image: linear-gradient(
+    90deg,
+    theme("colors.solana_first"),
+    theme("colors.solana_second")
+  );
   color: theme("colors.white");
   font-size: 16px;
   width: 100%;

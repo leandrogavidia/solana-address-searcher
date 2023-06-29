@@ -5,33 +5,34 @@ import {
     clusterApiUrl,
   } from "@solana/web3.js";
 
-const CONNECTION = new Connection(clusterApiUrl("devnet"));
 
-export const getSolBalanceBySDK = async (address: string) => {
+export const getSolBalanceBySDK = async (address: string, network: SolanaNetworks) => {
+    const connection = new Connection(clusterApiUrl(network));
     try {
         const publicKey = new PublicKey(address);
-        const balance = await CONNECTION.getBalance(publicKey);
+        const balance = await connection.getBalance(publicKey);
         return balance / LAMPORTS_PER_SOL;
     } catch (error) {
         alert(error);
     }
 };
 
-export const isItExecutable = async (address: string) => {
+export const isItExecutable = async (address: string, network: SolanaNetworks) => {
+    const connection = new Connection(clusterApiUrl(network));
     try {
         const publicKey = new PublicKey(address);
-        const accountInfo = await CONNECTION.getAccountInfo(publicKey);
+        const accountInfo = await connection.getAccountInfo(publicKey);
         return accountInfo?.executable;
     } catch (error) {
         alert(error);
     }
 };
 
-export const updateAddressData = async (address: string) => {
+export const updateAddressData = async (address: string, network: SolanaNetworks) => {
     try {
       const [addressBalance, isAddressExecutable] = await Promise.all([
-        getSolBalanceBySDK(address),
-        isItExecutable(address),
+        getSolBalanceBySDK(address, network),
+        isItExecutable(address, network),
       ]);
       if (
         typeof addressBalance === "number" &&
