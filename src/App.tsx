@@ -3,15 +3,20 @@ import { ShortcutToSearch } from "./components/shortcut-to-search";
 import "../styles/global.css";
 
 function App() {
-  // Change mouse shadow
-  // Add loading styles
   // Add Solana Font
   // Add docker file and docker compose
   // Add LICENSE
   // Add readme
   // Change outline color
-  // Add input for select mainnet, devnet or testnet
   // Add styles to errors of the input
+  // Fix mobile version
+
+  if (!import.meta.env.VITE_SOLANA_RPC) {
+    throw new Error(
+      "Solana RPC is not defined. Set your Solana RPC on your .env file."
+    );
+  }
+
   return (
     <main className="h-full w-full flex justify-center items-center flex-col relative">
       <SearchSolanaAddress />

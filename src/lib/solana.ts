@@ -7,7 +7,7 @@ import {
 
 
 export const getSolBalanceBySDK = async (address: string, network: SolanaNetworks) => {
-    const connection = new Connection(clusterApiUrl(network));
+    const connection = new Connection(network === "mainnet-beta" ? import.meta.env.VITE_SOLANA_RPC : clusterApiUrl(network));
     try {
         const publicKey = new PublicKey(address);
         const balance = await connection.getBalance(publicKey);
@@ -18,7 +18,7 @@ export const getSolBalanceBySDK = async (address: string, network: SolanaNetwork
 };
 
 export const isItExecutable = async (address: string, network: SolanaNetworks) => {
-    const connection = new Connection(clusterApiUrl(network));
+    const connection = new Connection(network === "mainnet-beta" ? import.meta.env.VITE_SOLANA_RPC : clusterApiUrl(network));
     try {
         const publicKey = new PublicKey(address);
         const accountInfo = await connection.getAccountInfo(publicKey);
