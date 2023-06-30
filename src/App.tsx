@@ -1,6 +1,6 @@
 import { SearchSolanaAddress } from "./components/search-solana-address";
 import { ShortcutToSearch } from "./components/shortcut-to-search";
-import "../styles/global.css";
+import "./styles/global.css";
 
 function App() {
   // Add Solana Font
@@ -10,6 +10,7 @@ function App() {
   // Change outline color
   // Add styles to errors of the input
   // Fix mobile version
+  // Check alt + s in other browsers
 
   if (!import.meta.env.VITE_SOLANA_RPC) {
     throw new Error(

@@ -2,6 +2,11 @@
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
+    fontWeight: {
+      regular: "400",
+      semibold: "600",
+      bold: "800",
+    },
     extend: {
       colors: {
         first: "#F70776",
