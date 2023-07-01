@@ -3,14 +3,13 @@ import { ShortcutToSearch } from "./components/shortcut-to-search";
 import "./styles/global.css";
 
 function App() {
-  // Add Solana Font
   // Add docker file and docker compose
-  // Add LICENSE
   // Add readme
-  // Change outline color
-  // Add styles to errors of the input
+  // Add message when the address does not exist
+  // Add a pattern?
   // Fix mobile version
   // Check alt + s in other browsers
+  // How to add a env variable in github pages
 
   if (!import.meta.env.VITE_SOLANA_RPC) {
     throw new Error(

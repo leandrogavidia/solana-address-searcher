@@ -27,12 +27,26 @@ const SearchSolanaAddress = () => {
       if (newAddressData) {
         setAddressData(newAddressData);
         inputAddress.value = "";
+        inputAddress.focus({ preventScroll: true });
       }
     } catch (error) {
       alert(error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const addressRequired = (event: FormEvent<HTMLInputElement>) => {
+    event.preventDefault();
+    const message = "You need to enter a solana address first";
+    const connectedValidation = document.querySelector(
+      "#address-validation"
+    ) as HTMLSpanElement;
+    connectedValidation.classList.remove("hidden");
+    connectedValidation.innerText = message;
+    setTimeout(() => {
+      connectedValidation.classList.add("hidden");
+    }, 3000);
   };
 
   console.log("RENDER");
@@ -43,7 +57,7 @@ const SearchSolanaAddress = () => {
         onSubmit={submit}
         className="flex justify-center items-center w-full gap-x-4 border-b-[1px] pb-7"
       >
-        <div className="flex flex-col justify-center items-start w-full gap-y-2">
+        <div className="flex flex-col justify-center items-start w-full gap-y-2 relative">
           <label htmlFor="solana_address" className="max-w-max font-bold">
             Search an address
           </label>
@@ -57,13 +71,21 @@ const SearchSolanaAddress = () => {
             autoFocus={true}
             placeholder="ej. 3GhJ75pGwgPmfTvEGUe1pTWXLPs6dhumJEhN4U4aHYpg"
             required={true}
+            aria-describedby="address-validation"
+            onInvalid={addressRequired}
             className={`
               bg-transparent border-[1px] border-solana_first rounded-md px-3 py-1 w-full focus:border-solana_second outline-none caret-solana_second h-full
               placeholder:opacity-40
               ${isLoading && "animate-pulse select-none pointer-events-none"}
             `}
           />
+          <span
+            id="address-validation"
+            aria-live="assertive"
+            className="bg-red-600 rounded-md px-2 py-1 absolute -bottom-11 hidden"
+          ></span>
         </div>
+
         <div className="flex flex-col justify-center items-start max-w-max gap-y-2">
           <label htmlFor="solana_networks" className="max-w-max font-bold">
             Network
