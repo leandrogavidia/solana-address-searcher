@@ -1,9 +1,13 @@
 import { FormEvent, useState } from "react";
-import { showErrorMessage } from "@lib/dom";
+import {
+  addressRequired,
+  searchAddressByKey,
+  showErrorMessage,
+} from "@lib/dom";
 import { updateAddressData } from "@lib/solana";
 import { SkeletonLoading } from "@components/skeleton-loading";
 
-const SearchSolanaAddress = () => {
+const Searcher = () => {
   const [isLoading, setLoading] = useState(false);
   const [addressData, setAddressData] = useState({
     balance: 0,
@@ -40,10 +44,7 @@ const SearchSolanaAddress = () => {
     }
   };
 
-  const addressRequired = (event: FormEvent<HTMLInputElement>) => {
-    event.preventDefault();
-    showErrorMessage("You need to enter a solana address first", 3000);
-  };
+  document.addEventListener("keydown", searchAddressByKey);
 
   return (
     <section className="bg-fourth w-full max-w-2xl px-7 py-4 shadow-lg">
@@ -113,6 +114,7 @@ const SearchSolanaAddress = () => {
           </select>
         </div>
         <label
+          htmlFor="submit_button"
           className={`
               w-full rounded-md self-end relative h-full min-w-min overflow-hidden border-[1px] border-solana_first 
               before:h-full before:w-full before:bg-gradient-to-l before:from-solana_first before:to-solana_second before:inline-block before:absolute before:-left-full before:transition-all before:duration-1000 before:ease-in-out
@@ -131,6 +133,7 @@ const SearchSolanaAddress = () => {
             readOnly={isLoading}
             disabled={isLoading}
             title="Search"
+            id="submit_button"
             className={`
               w-full h-full px-4 py-1 cursor-pointer relative font-semibold
             `}
@@ -155,4 +158,4 @@ const SearchSolanaAddress = () => {
   );
 };
 
-export { SearchSolanaAddress };
+export { Searcher };
