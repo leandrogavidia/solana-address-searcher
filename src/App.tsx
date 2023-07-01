@@ -4,7 +4,7 @@ import "./styles/global.css";
 
 function App() {
   // Add docker file and docker compose
-  // Add readme
+  // Add image on docker hub on the readme
   // Add message when the address does not exist
   // Add a pattern?
   // Fix mobile version

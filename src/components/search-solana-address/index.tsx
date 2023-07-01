@@ -1,6 +1,7 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { updateAddressData } from "../../lib";
 import { SkeletonLoading } from "../skeleton-loading";
+import { PublicKey } from "@solana/web3.js";
 
 const SearchSolanaAddress = () => {
   const [isLoading, setLoading] = useState(false);
@@ -9,6 +10,12 @@ const SearchSolanaAddress = () => {
     address: "",
     isExecutable: "",
   });
+
+  // const validateSolanaAddress = (address: string) => {
+  //   const pubkey = new PublicKey(address);
+  //   const isValidate = PublicKey.isOnCurve(pubkey.toBuffer());
+  //   return isValidate;
+  // };
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -30,7 +37,7 @@ const SearchSolanaAddress = () => {
         inputAddress.focus({ preventScroll: true });
       }
     } catch (error) {
-      alert(error);
+      if (error instanceof Error) console.error(error.message);
     } finally {
       setLoading(false);
     }
@@ -48,8 +55,6 @@ const SearchSolanaAddress = () => {
       connectedValidation.classList.add("hidden");
     }, 3000);
   };
-
-  console.log("RENDER");
 
   return (
     <section className="bg-fourth w-full max-w-2xl px-7 py-4 shadow-lg">

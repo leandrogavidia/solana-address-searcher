@@ -13,7 +13,7 @@ export const getSolBalanceBySDK = async (address: string, network: SolanaNetwork
         const balance = await connection.getBalance(publicKey);
         return balance / LAMPORTS_PER_SOL;
     } catch (error) {
-        alert(error);
+      if (error instanceof Error) console.error(error.message);
     }
 };
 
@@ -24,7 +24,7 @@ export const isItExecutable = async (address: string, network: SolanaNetworks) =
         const accountInfo = await connection.getAccountInfo(publicKey);
         return accountInfo?.executable;
     } catch (error) {
-        alert(error);
+      if (error instanceof Error) console.error(error.message);
     }
 };
 
@@ -35,6 +35,15 @@ export const updateAddressData = async (address: string, network: SolanaNetworks
         isItExecutable(address, network),
       ]);
       if (
+        addressBalance === 0 &&
+        isAddressExecutable == null
+      ) {
+        return {
+          address: "Address does not exist",
+          balance: addressBalance,
+          isExecutable: JSON.stringify(isAddressExecutable),
+        };      }
+      else if (
         typeof addressBalance === "number" &&
         typeof isAddressExecutable === "boolean"
       ) {
@@ -45,6 +54,6 @@ export const updateAddressData = async (address: string, network: SolanaNetworks
         };
       }
     } catch (error) {
-      alert(error);
+      if (error instanceof Error) console.error(error.message);
     }
 };
