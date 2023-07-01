@@ -5,11 +5,10 @@ import "./styles/global.css";
 function App() {
   // Add docker file and docker compose
   // Add image on docker hub on the readme
-  // Add message when the address does not exist
-  // Add a pattern?
-  // Fix mobile version
-  // Check alt + s in other browsers
+  // Add key combinatios to search (Firefox, Linux and mac)
   // How to add a env variable in github pages
+  // How to add a env variable in Dcoker
+  // Config vite.config
 
   if (!import.meta.env.VITE_SOLANA_RPC) {
     throw new Error(

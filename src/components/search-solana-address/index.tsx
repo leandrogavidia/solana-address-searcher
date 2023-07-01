@@ -1,7 +1,7 @@
-import { FormEvent, useEffect, useState } from "react";
-import { updateAddressData } from "../../lib";
-import { SkeletonLoading } from "../skeleton-loading";
-import { PublicKey } from "@solana/web3.js";
+import { FormEvent, useState } from "react";
+import { showErrorMessage } from "@lib/dom";
+import { updateAddressData } from "@lib/solana";
+import { SkeletonLoading } from "@components/skeleton-loading";
 
 const SearchSolanaAddress = () => {
   const [isLoading, setLoading] = useState(false);
@@ -10,12 +10,6 @@ const SearchSolanaAddress = () => {
     address: "",
     isExecutable: "",
   });
-
-  // const validateSolanaAddress = (address: string) => {
-  //   const pubkey = new PublicKey(address);
-  //   const isValidate = PublicKey.isOnCurve(pubkey.toBuffer());
-  //   return isValidate;
-  // };
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
@@ -37,7 +31,10 @@ const SearchSolanaAddress = () => {
         inputAddress.focus({ preventScroll: true });
       }
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) {
+        console.error(error.message);
+        showErrorMessage("You need to enter a solana address first", 3000);
+      }
     } finally {
       setLoading(false);
     }
@@ -45,22 +42,17 @@ const SearchSolanaAddress = () => {
 
   const addressRequired = (event: FormEvent<HTMLInputElement>) => {
     event.preventDefault();
-    const message = "You need to enter a solana address first";
-    const connectedValidation = document.querySelector(
-      "#address-validation"
-    ) as HTMLSpanElement;
-    connectedValidation.classList.remove("hidden");
-    connectedValidation.innerText = message;
-    setTimeout(() => {
-      connectedValidation.classList.add("hidden");
-    }, 3000);
+    showErrorMessage("You need to enter a solana address first", 3000);
   };
 
   return (
     <section className="bg-fourth w-full max-w-2xl px-7 py-4 shadow-lg">
       <form
         onSubmit={submit}
-        className="flex justify-center items-center w-full gap-x-4 border-b-[1px] pb-7"
+        className="
+          flex flex-col justify-center items-start w-full gap-4 border-b-[1px] pb-7
+          md:flex-row md:items-center
+        "
       >
         <div className="flex flex-col justify-center items-start w-full gap-y-2 relative">
           <label htmlFor="solana_address" className="max-w-max font-bold">
@@ -91,7 +83,12 @@ const SearchSolanaAddress = () => {
           ></span>
         </div>
 
-        <div className="flex flex-col justify-center items-start max-w-max gap-y-2">
+        <div
+          className="
+          flex flex-col justify-center items-start w-full gap-y-2
+          md:max-w-max
+        "
+        >
           <label htmlFor="solana_networks" className="max-w-max font-bold">
             Network
           </label>
@@ -103,9 +100,10 @@ const SearchSolanaAddress = () => {
             title="Solana networks"
             defaultValue="Mainnet"
             className={`
-              border-[1px] border-solana_first bg-transparent cursor-pointer rounded-md h-full px-3 py-1 outline-none font-semibold align-middle
+              w-full border-[1px] border-solana_first bg-transparent cursor-pointer rounded-md h-full px-3 py-1 outline-none font-semibold align-middle
               focus:border-solana_second
               [&_option]:bg-fourth 
+              md:text-center
               ${isLoading && "animate-pulse select-none pointer-events-none"}
             `}
           >
@@ -116,9 +114,10 @@ const SearchSolanaAddress = () => {
         </div>
         <label
           className={`
-              rounded-md self-end relative h-full min-w-min overflow-hidden border-[1px] border-solana_first 
-              before:h-full before:w-full before:bg-gradient-to-l before:from-solana_first before:to-solana_second before:inline-block before:absolute before:-left-32 before:transition-all before:duration-1000 before:ease-in-out
-              hover:before:left-24 hover:border-solana_second
+              w-full rounded-md self-end relative h-full min-w-min overflow-hidden border-[1px] border-solana_first 
+              before:h-full before:w-full before:bg-gradient-to-l before:from-solana_first before:to-solana_second before:inline-block before:absolute before:-left-full before:transition-all before:duration-1000 before:ease-in-out
+              hover:before:left-full hover:border-solana_second
+              md:max-w-max
               ${
                 isLoading &&
                 "animate-pulse cursor-default select-none pointer-events-none"

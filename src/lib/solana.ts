@@ -4,6 +4,7 @@ import {
     PublicKey,
     clusterApiUrl,
   } from "@solana/web3.js";
+import { showErrorMessage } from "."; 
 
 
 export const getSolBalanceBySDK = async (address: string, network: SolanaNetworks) => {
@@ -13,7 +14,10 @@ export const getSolBalanceBySDK = async (address: string, network: SolanaNetwork
         const balance = await connection.getBalance(publicKey);
         return balance / LAMPORTS_PER_SOL;
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) {
+        console.error(error.message)
+        showErrorMessage(error.message, 3000)
+      }
     }
 };
 
@@ -24,7 +28,10 @@ export const isItExecutable = async (address: string, network: SolanaNetworks) =
         const accountInfo = await connection.getAccountInfo(publicKey);
         return accountInfo?.executable;
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) {
+        console.error(error.message);
+        showErrorMessage(error.message, 3000)
+      }
     }
 };
 
@@ -54,6 +61,9 @@ export const updateAddressData = async (address: string, network: SolanaNetworks
         };
       }
     } catch (error) {
-      if (error instanceof Error) console.error(error.message);
+      if (error instanceof Error) {
+        console.error(error.message);
+        showErrorMessage(error.message, 3000)
+      }
     }
 };
