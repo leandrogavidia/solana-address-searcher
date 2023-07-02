@@ -4,7 +4,7 @@
 
 This project works with Mainnet, testnet and devnet Solana networks.
 
-- [**Deploy**](https://leandrogavidia.github.io/solana-address-searcher)
+- [**Deploy**](https://solana-address-searcher.vercel.app/)
 
 ### **Stack of technologies:**
 
@@ -18,6 +18,8 @@ This project works with Mainnet, testnet and devnet Solana networks.
 3. npm run dev
 
 ### Image on Docker Hub
+
+- [**Repository**](https://hub.docker.com/repository/docker/androgavidia/solana-address-searcher)
 
 ### How can you contribute to the project?
 

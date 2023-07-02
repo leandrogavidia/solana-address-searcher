@@ -104,7 +104,6 @@ const Searcher = () => {
               w-full border-[1px] border-solana_first bg-transparent cursor-pointer rounded-md h-full px-3 py-1 outline-none font-semibold align-middle
               focus:border-solana_second
               [&_option]:bg-fourth 
-              md:text-center
               ${isLoading && "animate-pulse select-none pointer-events-none"}
             `}
           >

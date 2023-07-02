@@ -5,7 +5,11 @@
   "main": "./src/main.tsx",
   "version": "1.0.0",
   "type": "module",
-  "keywords": ["Solana", "Address", "Searcher"],
+  "keywords": [
+    "Solana",
+    "Address",
+    "Searcher"
+  ],
   "author": "Leandro Gavidia Santamaria <leandro.d3v@gmail.com>",
   "license": "MIT",
   "scripts": {
@@ -33,6 +37,5 @@
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.9"
-  },
-  "homepage": "https://leandrogavidia.github.io/solana-address-searcher"
+  }
 }
