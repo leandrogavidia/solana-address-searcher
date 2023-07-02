@@ -1,7 +1,7 @@
 services:
   app:
     container_name: solana-address-searcher
-    image: solana-address-searcher:latest
+    image: androgavidia/solana-address-searcher:latest
     env_file:
       - .env
     ports:
