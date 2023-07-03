@@ -8,8 +8,9 @@ This project works with Mainnet, testnet and devnet Solana networks.
 
 ### **Stack of technologies:**
 
-|![Solana](./public/solana-logo.svg)|![React](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)|![TailwindCSS](https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg)|![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg)|@soana/web3.js|![Docker](https://www.vectorlogo.zone/logos/docker/docker-icon.svg)|Vite|Alchemy|
-|--|--|--|--|--|--|--|--|
+|![Solana](./public/solana-logo.svg)|![React](https://www.vectorlogo.zone/logos/reactjs/reactjs-icon.svg)|![TailwindCSS](https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg)|![TypeScript](https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg)|
+|---|---|---|---|
+|@solana/web3.js|![Docker](https://www.vectorlogo.zone/logos/docker/docker-icon.svg)|Vite|Alchemy|
 
 ### Steps to run
 
